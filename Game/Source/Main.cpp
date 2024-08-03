@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include <vector>
-#include <cassert>
 
 int main(int argc, char* argv[])
 {
@@ -10,15 +9,8 @@ int main(int argc, char* argv[])
 
 	engine->Initialize();
 
-#ifdef _DEBUG
-	std::cout << "debug\n";
-#endif
-
-	int i = 5;
-	assert(i == 5);
-
-	int* p = nullptr;
-	//assert(p != nullptr);
+	File::SetFilePath("Assets");
+	std::cout << File::GetFilePath() << std::endl;
 
 	while (!engine->isQuit())
 	{
