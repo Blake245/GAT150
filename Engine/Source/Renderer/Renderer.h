@@ -2,7 +2,8 @@
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
-#include<string>
+#include <string>
+#include <memory>
 class Renderer
 {
 public:
@@ -28,8 +29,12 @@ public:
 
 	SDL_Renderer* GetRender() { return m_renderer; }
 
+	void DrawTexture(std::weak_ptr<class Texture> texture, float x, float y, float angle = 0.0f);
+	void DrawTexture(std::weak_ptr<class Texture> texture, const struct Transform& transform, bool hflip = false);
+
 	friend class Texture;
-	void DrawTexture(Texture* texture, float x, float y, float angle = 0.0f);
+	friend class Text;
+
 private:
 	SDL_Window* m_window{ nullptr };
 	SDL_Renderer* m_renderer{ nullptr };

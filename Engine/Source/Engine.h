@@ -6,6 +6,7 @@
 #include "Core/Json.h"
 #include "Core/Factory.h"
 #include "Core/Singleton.h"
+#include "Core/EString.h"
 
 // ** systems **
 // renderer
@@ -30,6 +31,7 @@
 // ** framework **
 #include "framework/Actor.h"
 #include "Framework/Scene.h"
+#include "Framework/Game.h"
 
 // ** resources **
 #include "Resources/Resource.h"
@@ -37,6 +39,12 @@
 
 // ** components **
 #include "Components/TextureComponent.h"
+#include "Components/PhysicsComponent.h"
+#include "Components/EnginePhysicsComponent.h"
+#include "Components/TextComponent.h"
+
+// ** physics **
+#include "Physics/Physics.h"
 
 // ** third party **
 #include <SDL.h>
@@ -61,6 +69,7 @@ public:
 	Audio& GetAudio() { return *m_audio; }
 	Time& GetTime() { return *m_time; }
 	ParticleSystem& GetPS() { return *m_ParticleSystem; }
+	Physics& GetPhysics() { return *m_physics; }
 	bool isQuit() { return quit; }
 private:
 	bool quit{ false };
@@ -71,6 +80,7 @@ private:
 	std::unique_ptr<Audio> m_audio;
 
 	std::unique_ptr<ParticleSystem> m_ParticleSystem;
+	std::unique_ptr<Physics> m_physics;
 };
 
 

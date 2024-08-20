@@ -1,88 +1,78 @@
 #include "Engine.h"
-
+#include "Components/PlayerComponent.h"
 #include <iostream>
 #include <vector>
 
+void func1(int i) { std::cout << "Still broken: " << i << std::endl; }
+void func2(int i) { std::cout << "Still broken part 2: " << i << std::endl; }
+
 int main(int argc, char* argv[])
 {
-	Factory::Instance().Register<Actor>(Actor::GetTypeName());
-	Factory::Instance().Register<TextureComponent>(TextureComponent::GetTypeName());
+	void(*fp)(int);
 
-	//auto a = Factory::Instance().Create("Actor");
+	fp = &func1;
+	fp(5);
 
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
 
 	engine->Initialize();
 
-	//ResourceManager rm = ResourceManager();
 
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << std::endl;
 
-	std::string s;
-	File::ReadFile("json.txt", s);
-	std::cout << s;
+	/*std::string s;
+	File::ReadFile("Scenes/scene.json", s);
+	std::cout << s;*/
 
 	rapidjson::Document document;
-	Json::Load("json.txt", document);
+	Json::Load("Scenes/scene.json", document);
 
-	std::string name;
-	int age;
-	bool isAwake;
-	Vector2 position;
-	Color color;
-	
-	READ_DATA(document, name);
-	READ_DATA(document, age);
-	READ_DATA(document, isAwake);
-	READ_DATA(document, position);
-	READ_DATA(document, color);
+	std::unique_ptr<Scene> scene = std::make_unique<Scene>(engine.get());
+	scene->Read(document);
+	scene->Initialize();
 
-	Json::Read(document, "age", age);
-	Json::Read(document, "name", name);
-	Json::Read(document, "isAwake", isAwake);
-	Json::Read(document, "position", position);
-	Json::Read(document, "color", color);
-	std::cout << age << std::endl;
-	std::cout << name << std::endl;
-	std::cout << isAwake << std::endl;
-	std::cout << position.x << " " << position.y << std::endl;
-	std::cout << color.r << " " << color.g << " " << color.b << " " << color.a << " " << std::endl;
 
 	{
 		// create texture
 		//std::shared_ptr<Texture> texture = std::make_shared<Texture>();
 		//texture->Load("sword.png", engine->GetRenderer());
 
-		res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Sword.png", engine->GetRenderer());
+		/*res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("Sword.png", engine->GetRenderer());
 		res_t<Font> font = ResourceManager::Instance().Get<Font>("ArcadeClassic.ttf", 20);
 		std::unique_ptr<Text> text = std::make_unique<Text>(font);
 		text->Create(engine->GetRenderer(), "Sup", { 1, 0, 1, 1 });
 
 		Transform t{ {300, 300} };
 		auto actor = Factory::Instance().Create<Actor>(Actor::GetTypeName());
-		actor->SetTransform(t);
+		actor->transform = Transform{ {30, 30} };
 		auto component = Factory::Instance().Create<TextureComponent>(TextureComponent::GetTypeName());
 		component->texture = texture;
-		actor->AddComponent(std::move(component));
+		actor->AddComponent(std::move(component));*/
 
 		while (!engine->isQuit())
 		{
+			//update
 			engine->Update();
+			scene->Update(engine->GetTime().GetDeltaTime());
 
-			actor->Update(engine->GetTime().GetDeltaTime());
+			auto* actor = scene->GetActor<Actor>();
+			if (actor)
+			{
+				actor->transform.rotation += engine->GetTime().GetDeltaTime();
+			}
 
+			// render
 			engine->GetRenderer().SetColor(100, 100, 100, 0);
 			engine->GetRenderer().BeginFrame();
 
-			// draw texture
-			engine->GetRenderer().DrawTexture(texture.get(), 30, 30);
-			actor->Draw(engine->GetRenderer());
-			text->Draw(engine->GetRenderer(), 500, 200);
+			//draw
+			scene->Draw(engine->GetRenderer());
 
 			engine->GetRenderer().EndFrame();
 		}
 	}
+	scene->RemoveAll();
 	ResourceManager::Instance().Clear();
 	engine->Shutdown();
 
