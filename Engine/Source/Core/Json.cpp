@@ -70,7 +70,7 @@ namespace Json
     {
         if (!value.HasMember(name.c_str()) || !value[name.c_str()].IsString())
         {
-            if (isRequired) std::cerr << "Could not read json value: " << name << std::endl;
+            if (isRequired) std::cerr << "Could not read json value string: " << name << std::endl;
             return false;
         }
 

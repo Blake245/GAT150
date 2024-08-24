@@ -16,13 +16,16 @@ public:
 		game{game}
 		{}
 
+	Scene(const Scene& other);
+
 	CLASS_DECLARATION(Scene);
+	CLASS_PROTOTYPE(Scene);
 
 	void Initialize() override;
 	void Update(float dt);
 	void Draw(Renderer& renderer);
 
-	void AddActor(std::unique_ptr<Actor> actor);
+	void AddActor(std::unique_ptr<Actor> actor, bool initialize = false);
 	void RemoveAll();
 
 	template<typename T> T* GetActor();

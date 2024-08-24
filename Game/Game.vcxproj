@@ -180,7 +180,9 @@ sdl2_image.lib
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Components\PlayerComponent.cpp" />
+    <ClCompile Include="Source\Components\RocketComponent.cpp" />
     <ClCompile Include="Source\Main.cpp" />
+    <ClCompile Include="Source\SpaceGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -192,6 +194,8 @@ sdl2_image.lib
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Components\PlayerComponent.h" />
+    <ClInclude Include="Source\Components\RocketComponent.h" />
+    <ClInclude Include="Source\SpaceGame.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint" />
