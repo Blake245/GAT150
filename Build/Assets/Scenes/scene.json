@@ -5,7 +5,7 @@
       "transform": {
         "position": [ 60, 60 ],
         "rotation": 0,
-        "scale": 0.5
+        "scale": 3
       },
       "components": [
         {
@@ -19,7 +19,7 @@
       "transform": {
         "position": [ 60, 60 ],
         "rotation": 0,
-        "scale": 0.5
+        "scale": 2
       },
       "components": [
         {
@@ -28,12 +28,19 @@
         },
         {
           "type": "Box2DPhysicsComponent",
-          "damping": 0.0,
-          "size": [ 32, 32 ]
+          "damping": 1,
+          "size": [ 32, 32 ],
+          "gravityScale": 0,
+          "angularDamping": 1
         },
         {
           "type": "PlayerComponent",
-          "speed": 10
+          "speed": 500
+        },
+        {
+          "type": "AudioComponent",
+          "soundName": "Audio/Explosion5.wav",
+          "playOnStart": false
         }
       ]
     },
@@ -41,20 +48,19 @@
       "name": "enemy",
       "transform": {
         "position": [ 260, 260 ],
-        "rotation": 90,
-        "scale": 1
+        "rotation": 0,
+        "scale": 5
       },
       "components": [
         {
-          "type": "TextComponent",
-          "text": "Hello World",
-          "fontName": "fonts/arcadeclassic.ttf",
-          "fontSize": 24
-        },
-        {
-          "type": "Box2DPhysicsComponent",
-          "damping": 0.0,
-          "size": [ 32, 32 ]
+          "type": "TextureAnimationComponent",
+          "textureName": "Textures/coin.png",
+          "fps": 10,
+          "loop": true,
+          "numColumns": 8,
+          "numRows": 1,
+          "startFrame": 1,
+          "endFrame": 8
         }
       ]
     },
@@ -82,6 +88,11 @@
         {
           "type": "CircleCollisionComponent",
           "radius": 24
+        },
+        {
+          "type": "AudioComponent",
+          "soundName": "Audio/Explosion5.wav",
+          "playOnStart": true
         }
       ]
     }

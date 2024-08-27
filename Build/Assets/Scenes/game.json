@@ -1,0 +1,49 @@
+{
+  "actors": [
+    {
+      "name": "background",
+      "transform": {
+        "position": [ 60, 60 ],
+        "rotation": 0,
+        "scale": 3
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/Purple_Nebula.png"
+        }
+      ]
+    },
+    {
+      "name": "player",
+      "transform": {
+        "position": [ 60, 60 ],
+        "rotation": 0,
+        "scale": 2
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/Warrior.png"
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "damping": 1,
+          "size": [ 32, 32 ],
+          "gravityScale": 1,
+          "angularDamping": 1,
+          "constrainAngle": true
+        },
+        {
+          "type": "CharacterComponent",
+          "speed": 500
+        },
+        {
+          "type": "AudioComponent",
+          "soundName": "Audio/Explosion5.wav",
+          "playOnStart": false
+        }
+      ]
+    }
+  ]
+}

@@ -27,6 +27,7 @@
 #include "Math/MathUtils.h"
 #include "Math/Random.h"
 #include "Math/Transform.h"
+#include "Math/Rect.h"
 
 // ** framework **
 #include "framework/Actor.h"
@@ -45,6 +46,7 @@
 #include "Components/PhysicsComponent.h"
 #include "Components/EnginePhysicsComponent.h"
 #include "Components/TextComponent.h"
+#include "Components/AudioComponent.h"
 
 // ** physics **
 #include "Physics/Physics.h"

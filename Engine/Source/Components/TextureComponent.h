@@ -12,6 +12,7 @@ public:
 	void Draw(Renderer& renderer) override;
 
 public:
+	Rect source;
 	std::string textureName;
 	res_t<Texture> texture;
 };
