@@ -5,12 +5,12 @@
       "transform": {
         "position": [ 60, 60 ],
         "rotation": 0,
-        "scale": 3
+        "scale": 2
       },
       "components": [
         {
           "type": "TextureComponent",
-          "textureName": "Textures/Purple_Nebula.png"
+          "textureName": "Textures/background.png"
         }
       ]
     },
@@ -19,20 +19,43 @@
       "transform": {
         "position": [ 60, 60 ],
         "rotation": 0,
-        "scale": 2
+        "scale": 1
       },
       "components": [
         {
-          "type": "TextureComponent",
-          "textureName": "Textures/Warrior.png"
+          "type": "TextureAnimationComponent",
+          "animationName": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "fps": 7,
+              "numColumns": 4,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 4,
+              "textureName": "Textures/character_idle.png"
+            },
+            {
+              "name": "run",
+              "fps": 12,
+              "numColumns": 7,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 7,
+              "textureName": "Textures/character_walk.png"
+            }
+          ]
         },
         {
           "type": "Box2DPhysicsComponent",
-          "damping": 1,
-          "size": [ 32, 32 ],
+          "damping": 5,
+          "size": [ 32, 96 ],
+          "scale": [ 0.6, 0.6 ],
           "gravityScale": 1,
           "angularDamping": 1,
-          "constrainAngle": true
+          "constrainAngle": true,
+          "restitution": 1,
+          "shape": "capsule"
         },
         {
           "type": "CharacterComponent",
@@ -42,6 +65,31 @@
           "type": "AudioComponent",
           "soundName": "Audio/Explosion5.wav",
           "playOnStart": false
+        }
+      ]
+    },
+    {
+      "name": "enemy",
+      "transform": {
+        "position": [ 60, 60 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "idle",
+          "animations": [
+            {
+              "name": "idle",
+              "fps": 7,
+              "numColumns": 4,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 4,
+              "textureName": "Textures/bat.png"
+            }
+          ]
         }
       ]
     }

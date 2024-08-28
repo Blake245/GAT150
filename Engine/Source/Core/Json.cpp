@@ -192,9 +192,9 @@ namespace Json
         // get array values
         for (rapidjson::SizeType i = 0; i < array.Size(); i++)
         {
-            if (!array[i].IsNumber())
+            if (!array[i].IsString())
             {
-                std::cerr << "Could not read json value : " << name << std::endl;
+                std::cerr << "Could not read json value vector of string : " << name << std::endl;
                 return false;
             }
 

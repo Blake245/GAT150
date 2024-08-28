@@ -6,7 +6,7 @@ bool SpaceGame::Initialize()
 {
 	m_scene = std::make_unique<Scene>(m_engine);
 
-	std::string sceneNames[] = { "Scenes/scene.json" };
+	std::string sceneNames[] = {"Scenes/tilemap.json", "Scenes/game.json"};
 	for (auto sceneName : sceneNames)
 	{
 		rapidjson::Document document;
@@ -29,6 +29,10 @@ void SpaceGame::Shutdown()
 
 void SpaceGame::Update(float dt)
 {
+	/*auto bat = Factory::Instance().Create<Actor>("bat");
+	bat->transform.position = Vector2{ randomf(800), randomf(600) };
+	m_scene->AddActor(std::move(bat), true);*/
+
 	m_scene->Update(dt);
 }
 

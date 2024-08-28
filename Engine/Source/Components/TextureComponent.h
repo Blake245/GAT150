@@ -14,5 +14,6 @@ public:
 public:
 	Rect source;
 	std::string textureName;
+	bool hflip = false;
 	res_t<Texture> texture;
 };
