@@ -16,4 +16,9 @@ public:
 public:
 	float speed{ 0 };
 
+	class PhysicsComponent* physics{ nullptr };
+
+	Vector2 direction{ 0, 0 };
+	float angle = 0;
+
 };

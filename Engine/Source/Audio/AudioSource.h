@@ -5,7 +5,7 @@ class AudioSource
 {
 public:
 	AudioSource() = default;
-	AudioSource(std::shared_ptr<AudioClip> audioClip) : m_audioClip{audioClip} {}
+	AudioSource(res_t<AudioClip> audioClip) : m_audioClip{audioClip} {}
 	~AudioSource() = default;
 
 	bool Play(class Audio& audio, bool loop = false, float volume = 1, float pitch = 1);

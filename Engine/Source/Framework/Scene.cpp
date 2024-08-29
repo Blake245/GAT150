@@ -51,7 +51,7 @@ void Scene::Update(float dt)
 	}
 	*/
 	// destroy
-	std::erase_if(actors, [](auto& actor) { return actor->destroyed; });
+	std::erase_if(actors, [](auto& actor) { return actor->destroyed && !actor->persistent; });
 }
 
 void Scene::Draw(Renderer& renderer)
@@ -69,9 +69,10 @@ void Scene::AddActor(std::unique_ptr<Actor> actor, bool initialize)
 	actors.push_back(std::move(actor));
 }
 
-void Scene::RemoveAll()
+void Scene::RemoveAll(bool force)
 {
-	actors.clear();
+	std::erase_if(actors, [force](auto& actor) { return (force || !actor->persistent); });
+	//actors.clear();
 }
 
 

@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 			game->Update(engine->GetTime().GetDeltaTime());
 
 			// render
-			engine->GetRenderer().SetColor(100, 100, 100, 0);
+			engine->GetRenderer().SetColor(0, 0, 0, 0);
 			engine->GetRenderer().BeginFrame();
 
 			//draw
@@ -31,10 +31,10 @@ int main(int argc, char* argv[])
 			engine->GetRenderer().EndFrame();
 		}
 	}
-	
+
+	game->Shutdown();
 	ResourceManager::Instance().Clear();
 	engine->Shutdown();
-	game->Shutdown();
 
 	return 0;
 }

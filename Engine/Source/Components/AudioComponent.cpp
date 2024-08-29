@@ -24,8 +24,8 @@ void AudioComponent::Initialize()
 {
     if (!m_audioSource && !soundName.empty())
     {
-        //auto audioclip = ResourceManager::Instance().Get<AudioClip>(soundName, owner->scene->engine->GetAudio());
-        //m_audioSource = std::make_unique<AudioSource>(audioclip);
+        auto audioClip = ResourceManager::Instance().Get<AudioClip>(soundName, owner->scene -> engine->GetAudio());
+        m_audioSource = std::make_unique<AudioSource>(audioClip);
     }
 }
 

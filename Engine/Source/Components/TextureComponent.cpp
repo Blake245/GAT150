@@ -36,6 +36,7 @@ void TextureComponent::Draw(Renderer& renderer)
 void TextureComponent::Read(const json_t& value)
 {
 	READ_DATA(value, textureName);
+	READ_DATA(value, hflip);
 	READ_DATA(value, source);
 }
 

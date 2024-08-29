@@ -22,20 +22,35 @@ void CharacterComponent::Update(float dt)
 	if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_D)) direction.x = 1;
 
 	float modifier = (onGround) ? 1 : 0.5f;
-	physics->ApplyForce(direction * speed * modifier);
+	physics->ApplyForce(direction * speed * 10 * modifier);
 
-	// spawn rocket
-	if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_SPACE))
+	// jump
+	if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_SPACE) && onGround)
 	{
-		physics->SetVelocity({ 0, -500 });
+		//physics->SetVelocity({ 0, -1000 });
+		physics->ApplyForce({ 0, -7000 * 15 });
+		animation->SetAnimation("jump");
+	}
+	if (owner->scene->engine->GetInput().GetKeyDown(SDL_SCANCODE_F))
+	{
+		animation->SetAnimation("attack");
 	}
 
 	if (physics->velocity.x < -0.1) animation->hflip = true;
 	else if (physics->velocity.x > 0.1) animation->hflip = false;
 
-	if (Math::Abs(physics->velocity.x) > 0.1f) animation->SetAnimation("run");
+	if (Math::Abs(physics->velocity.x) > 1) animation->SetAnimation("run");
 	else animation->SetAnimation("idle");
 
+	if (physics->velocity.y > 0.1f) animation->SetAnimation("fall");
+	else if (physics->velocity.y < -0.1f) animation->SetAnimation("jump");
+
+	if (owner->scene->engine->GetInput().GetMouseButtonDown(0) && !owner->scene->engine->GetInput().GetPrevMouseButtonDown(0))
+	{
+		auto bullet = Factory::Instance().Create<Actor>("rocket");
+		bullet->transform.position = owner->transform.position;
+		owner->scene->AddActor(std::move(bullet), true);
+	}
 }
 
 void CharacterComponent::OnCollisionEnter(Actor* actor)

@@ -2,7 +2,7 @@
 #include "Resources/Resource.h"
 #include "Audio.h"
 
-class AudioClip : Resource
+class AudioClip : public Resource
 {
 public:
 	AudioClip() = default;

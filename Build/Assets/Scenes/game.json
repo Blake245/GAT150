@@ -17,9 +17,9 @@
     {
       "name": "player",
       "transform": {
-        "position": [ 60, 60 ],
+        "position": [ 60, 360 ],
         "rotation": 0,
-        "scale": 1
+        "scale": 2
       },
       "components": [
         {
@@ -29,37 +29,65 @@
             {
               "name": "idle",
               "fps": 7,
-              "numColumns": 4,
+              "numColumns": 10,
               "numRows": 1,
               "startFrame": 1,
-              "endFrame": 4,
-              "textureName": "Textures/character_idle.png"
+              "endFrame": 10,
+              "textureName": "Textures/knight_idle.png"
             },
             {
               "name": "run",
               "fps": 12,
-              "numColumns": 7,
+              "numColumns": 10,
               "numRows": 1,
               "startFrame": 1,
-              "endFrame": 7,
-              "textureName": "Textures/character_walk.png"
+              "endFrame": 10,
+              "textureName": "Textures/knight_run.png"
+            },
+            {
+              "name": "jump",
+              "fps": 12,
+              "numColumns": 3,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 3,
+              "textureName": "Textures/knight_jump.png"
+            },
+            {
+              "name": "fall",
+              "fps": 12,
+              "numColumns": 3,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 3,
+              "textureName": "Textures/knight_fall.png"
+            },
+            {
+              "name": "attack",
+              "fps": 12,
+              "numColumns": 4,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 4,
+              "textureName": "Textures/knight_attack.png"
             }
           ]
         },
         {
           "type": "Box2DPhysicsComponent",
           "damping": 5,
-          "size": [ 32, 96 ],
-          "scale": [ 0.6, 0.6 ],
-          "gravityScale": 1,
+          "scale": [ 0.1, 1 ],
+          "gravityScale": 1.5,
           "angularDamping": 1,
           "constrainAngle": true,
-          "restitution": 1,
+          "restitution": 0,
+          "density": 2,
+          "friction": 2,
           "shape": "capsule"
         },
         {
           "type": "CharacterComponent",
-          "speed": 500
+          "speed": 600
         },
         {
           "type": "AudioComponent",
@@ -69,9 +97,11 @@
       ]
     },
     {
-      "name": "enemy",
+      "name": "bat",
+      "prototype": true,
+      "tag": "enemy",
       "transform": {
-        "position": [ 60, 60 ],
+        "position": [ 260, 60 ],
         "rotation": 0,
         "scale": 1
       },
@@ -90,6 +120,40 @@
               "textureName": "Textures/bat.png"
             }
           ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "gravityScale": 0,
+          "shape": "circle"
+        }
+      ]
+    },
+    {
+      "name": "rocket",
+      "prototype": true,
+      "transform": {
+        "position": [ 400, 300 ],
+        "rotation": 0,
+        "scale": 0.1
+      },
+      "components": [
+        {
+          "type": "TextureComponent",
+          "textureName": "Textures/Rocket.png"
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "gravityScale": 0,
+          "shape": "circle"
+        },
+        {
+          "type": "RocketComponent",
+          "speed": 100
+        },
+        {
+          "type": "AudioComponent",
+          "soundName": "Audio/Explosion5.wav",
+          "playOnStart": true
         }
       ]
     }
