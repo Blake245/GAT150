@@ -170,7 +170,7 @@
       "components": [
         {
           "type": "SkeletonComponent",
-          "speed": 10
+          "speed": 75
         },
         {
           "type": "TextureAnimationComponent",

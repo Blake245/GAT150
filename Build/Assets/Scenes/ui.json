@@ -3,18 +3,18 @@
     
     {
       "name": "score",
-      "prototype": true,
       "transform": {
-        "position": [ 100, 100 ],
+        "position": [ 120, 100 ],
         "rotation": 0,
-        "scale": 1
+        "scale": 0.8
       },
       "components": [
         {
           "type": "TextComponent",
-          "text": "Score: ",
-          "fontName": "fonts/arcadeclassic.ttf",
-          "fontSize": 25
+          "text": "Score      0",
+          "fontName": "Fonts/ArcadeClassic.ttf",
+          "fontSize": 25,
+          "color": [0, 0, 0, 0]
         }
       ]
     }

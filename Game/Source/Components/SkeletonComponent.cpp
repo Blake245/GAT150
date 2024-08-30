@@ -14,8 +14,8 @@ void SkeletonComponent::Update(float dt)
 {
 	physics->SetVelocity(owner->transform.Forward() * speed);
 
-	if (physics->velocity.x < -0.1) animation->hflip = true;
-	else if (physics->velocity.x > 0.1) animation->hflip = false;
+	if (owner->transform.rotation >= 180) animation->hflip = true;
+	else if (owner->transform.rotation < 180) animation->hflip = false;
 }
 
 void SkeletonComponent::OnCollisionEnter(Actor* actor)

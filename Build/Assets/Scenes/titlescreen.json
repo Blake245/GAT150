@@ -26,7 +26,8 @@
           "type": "TextComponent",
           "text": "Knight   With    A     Gun",
           "fontName": "fonts/arcadeclassic.ttf",
-          "fontSize": 50
+          "fontSize": 50,
+          "color": [0, 0, 0, 0]
         }
       ]
     }

@@ -14,7 +14,6 @@ void RocketComponent::Initialize()
 	Vector2 mousePostion = owner->scene->engine->GetInput().GetMousePosition();
 	angle = Math::Atan2(mousePostion.y - owner->transform.position.y, mousePostion.x - owner->transform.position.x);
 	angle = Math::RadToDeg(angle);
-	std::cout << mousePostion.x << " " << mousePostion.y << std::endl;
 }
 
 void RocketComponent::Update(float dt)
@@ -27,6 +26,7 @@ void RocketComponent::OnCollisionEnter(Actor* actor)
 {
 	if (!actor->destroyed && (actor->tag == "enemy"))
 	{
+		EVENT_NOTIFY_DATA(AddPoints, 100)
 		actor->destroyed = true;
 		owner->destroyed = true;
 	}

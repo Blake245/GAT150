@@ -16,7 +16,7 @@ bool Text::Create(Renderer& renderer, const std::string& text, const Color& colo
 	}
 
 	// create a texture from the surface, only textures can render to the renderer
-	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer.GetRender(), surface);
+ 	SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer.GetRender(), surface);
 	if (texture == nullptr)
 	{
 		SDL_FreeSurface(surface);

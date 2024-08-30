@@ -33,8 +33,6 @@ void SpaceGame::Update(float dt)
 	bat->transform.position = Vector2{ randomf(800), randomf(600) };
 	m_scene->AddActor(std::move(bat), true);*/
 	std::string sceneNames[] = { "Scenes/tilemap.json", "Scenes/game.json", "Scenes/ui.json"};
-	//std::string* scoreName = "score";
-	
 
 	switch (state)
 	{
@@ -53,7 +51,10 @@ void SpaceGame::Update(float dt)
 			Json::Load(sceneName, document);
 			m_scene->Read(document);
 		}
+
 		m_scene->Initialize();
+
+
 		spawnTimer = 2;
 		state = eState::GAME;
 		break;
@@ -68,11 +69,12 @@ void SpaceGame::Update(float dt)
 			auto skeleton = Factory::Instance().Create<Actor>("skeleton");
 			skeleton->transform.position = Vector2{32, 400 };
 			m_scene->AddActor(std::move(skeleton), true);
-
+			
 			spawnTimer = 2;
 		}
 		break;
 	case SpaceGame::eState::GAME_OVER:
+		//
 		break;
 	default:
 		break;
@@ -94,4 +96,8 @@ void SpaceGame::OnPlayerDead(const Event& event)
 void SpaceGame::OnAddPoints(const Event& event)
 {
 	m_score += std::get<int>(event.data);
+	std::string str = "score       " + std::to_string(m_score);
+
+	auto score = m_scene->GetActor<Actor>("score");
+	score->GetComponent<TextComponent>()->SetText(str);
 }
