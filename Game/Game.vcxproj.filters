@@ -21,7 +21,7 @@
     <ClCompile Include="Source\Main.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Components\PlayerComponent.cpp">
+    <ClCompile Include="Source\Components\SkeletonComponent.cpp">
       <Filter>Source\Components</Filter>
     </ClCompile>
     <ClCompile Include="Source\Components\RocketComponent.cpp">
@@ -40,7 +40,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Components\PlayerComponent.h">
+    <ClInclude Include="Source\Components\SkeletonComponent.h">
       <Filter>Source\Components</Filter>
     </ClInclude>
     <ClInclude Include="Source\Components\RocketComponent.h">
@@ -62,6 +62,9 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="..\Build\Assets\Scenes\titlescreen.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="..\Build\Assets\Scenes\ui.json">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

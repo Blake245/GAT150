@@ -3,25 +3,30 @@
     {
       "name": "background",
       "transform": {
-        "position": [ 60, 60 ],
+        "position": [ 400, 300 ],
         "rotation": 0,
-        "scale": 2
+        "scale": 1
       },
       "components": [
         {
           "type": "TextureComponent",
-          "textureName": "Textures/background.png"
+          "textureName": "Textures/newCastleBackground3.png"
         }
       ]
     },
     {
       "name": "player",
+      "tag": "player",
       "transform": {
         "position": [ 60, 360 ],
         "rotation": 0,
         "scale": 2
       },
       "components": [
+        {
+          "type": "CharacterComponent",
+          "speed": 600
+        },
         {
           "type": "TextureAnimationComponent",
           "animationName": "idle",
@@ -86,10 +91,6 @@
           "shape": "capsule"
         },
         {
-          "type": "CharacterComponent",
-          "speed": 600
-        },
-        {
           "type": "AudioComponent",
           "soundName": "Audio/Explosion5.wav",
           "playOnStart": false
@@ -148,12 +149,65 @@
         },
         {
           "type": "RocketComponent",
-          "speed": 100
+          "speed": 500
         },
         {
           "type": "AudioComponent",
           "soundName": "Audio/Explosion5.wav",
           "playOnStart": true
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "prototype": true,
+      "tag": "enemy",
+      "transform": {
+        "position": [ 60, 360 ],
+        "rotation": 0,
+        "scale": 2
+      },
+      "components": [
+        {
+          "type": "SkeletonComponent",
+          "speed": 10
+        },
+        {
+          "type": "TextureAnimationComponent",
+          "animationName": "walk",
+          "animations": [
+            {
+              "name": "walk",
+              "fps": 10,
+              "numColumns": 12,
+              "numRows": 1,
+              "startFrame": 1,
+              "endFrame": 12,
+              "textureName": "Textures/skeleton_walk.png"
+            }
+          ]
+        },
+        {
+          "type": "Box2DPhysicsComponent",
+          "scale": [ 0.1, 0.5 ],
+          "gravityScale": 10,
+          "constrainAngle": true,
+          "restitution": 0,
+          "desity": 2,
+          "shape": "capsule"
+        }
+      ]
+    },
+    {
+      "name": "mainMusic",
+      "components": [
+        {
+          "type": "AudioComponent",
+          "soundName": "Audio/boss-fight.wav",
+          "playOnStart": true,
+          "loop": true,
+          "volume": 1,
+          "pitch": 1
         }
       ]
     }

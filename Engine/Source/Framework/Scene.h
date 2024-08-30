@@ -56,7 +56,8 @@ inline T* Scene::GetActor(const std::string& name)
 	for (auto& actor : actors)
 	{
 		T* result = dynamic_cast<T*>(actor.get());
-		if (result && IsEqualIgnoreCase(result->name, name)) return result;
+		//if (result && IsEqualIgnoreCase(result->name, name)) return result;
+		if (result && result->name == name) return result;
 	}
 
 	return nullptr;

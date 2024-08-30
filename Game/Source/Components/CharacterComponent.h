@@ -18,6 +18,7 @@ public:
 public:
 	float speed{ 0 };
 	int groundCount{ 0 };
+	float rocketTimer{ 0 };
 
 	class PhysicsComponent* physics{ nullptr };
 	class TextureAnimationComponent* animation{ nullptr };

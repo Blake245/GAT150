@@ -45,11 +45,14 @@ void CharacterComponent::Update(float dt)
 	if (physics->velocity.y > 0.1f) animation->SetAnimation("fall");
 	else if (physics->velocity.y < -0.1f) animation->SetAnimation("jump");
 
-	if (owner->scene->engine->GetInput().GetMouseButtonDown(0) && !owner->scene->engine->GetInput().GetPrevMouseButtonDown(0))
+	rocketTimer -= dt;
+	if (owner->scene->engine->GetInput().GetMouseButtonDown(0) && !owner->scene->engine->GetInput().GetPrevMouseButtonDown(0) && rocketTimer <= 0)
 	{
 		auto bullet = Factory::Instance().Create<Actor>("rocket");
-		bullet->transform.position = owner->transform.position;
+		bullet->transform.position = owner->transform.position - 32;
 		owner->scene->AddActor(std::move(bullet), true);
+
+		rocketTimer = 0.5;
 	}
 }
 

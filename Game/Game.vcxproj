@@ -180,7 +180,7 @@ sdl2_image.lib
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Components\CharacterComponent.cpp" />
-    <ClCompile Include="Source\Components\PlayerComponent.cpp" />
+    <ClCompile Include="Source\Components\SkeletonComponent.cpp" />
     <ClCompile Include="Source\Components\RocketComponent.cpp" />
     <ClCompile Include="Source\Main.cpp" />
     <ClCompile Include="Source\SpaceGame.cpp" />
@@ -195,7 +195,7 @@ sdl2_image.lib
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Components\CharacterComponent.h" />
-    <ClInclude Include="Source\Components\PlayerComponent.h" />
+    <ClInclude Include="Source\Components\SkeletonComponent.h" />
     <ClInclude Include="Source\Components\RocketComponent.h" />
     <ClInclude Include="Source\SpaceGame.h" />
   </ItemGroup>
@@ -203,6 +203,7 @@ sdl2_image.lib
     <None Include="..\Build\Assets\Scenes\game.json" />
     <None Include="..\Build\Assets\Scenes\tilemap.json" />
     <None Include="..\Build\Assets\Scenes\titlescreen.json" />
+    <None Include="..\Build\Assets\Scenes\ui.json" />
     <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

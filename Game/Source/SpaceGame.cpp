@@ -32,7 +32,10 @@ void SpaceGame::Update(float dt)
 	/*auto bat = Factory::Instance().Create<Actor>("bat");
 	bat->transform.position = Vector2{ randomf(800), randomf(600) };
 	m_scene->AddActor(std::move(bat), true);*/
-	std::string sceneNames[] = { "Scenes/tilemap.json", "Scenes/game.json" };
+	std::string sceneNames[] = { "Scenes/tilemap.json", "Scenes/game.json", "Scenes/ui.json"};
+	//std::string* scoreName = "score";
+	
+
 	switch (state)
 	{
 	case SpaceGame::eState::TITLE:
@@ -59,8 +62,13 @@ void SpaceGame::Update(float dt)
 		if (spawnTimer <= 0)
 		{
 			auto bat = Factory::Instance().Create<Actor>("bat");
-			bat->transform.position = Vector2{ randomf(800), randomf(600) };
+			bat->transform.position = Vector2{ randomf(32, 768), randomf(10, 300) };
 			m_scene->AddActor(std::move(bat), true);
+
+			auto skeleton = Factory::Instance().Create<Actor>("skeleton");
+			skeleton->transform.position = Vector2{32, 400 };
+			m_scene->AddActor(std::move(skeleton), true);
+
 			spawnTimer = 2;
 		}
 		break;
@@ -69,7 +77,6 @@ void SpaceGame::Update(float dt)
 	default:
 		break;
 	}
-
 
 	m_scene->Update(dt);
 }

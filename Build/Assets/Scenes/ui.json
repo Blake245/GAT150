@@ -1,0 +1,22 @@
+{
+  "actors": [
+    
+    {
+      "name": "score",
+      "prototype": true,
+      "transform": {
+        "position": [ 100, 100 ],
+        "rotation": 0,
+        "scale": 1
+      },
+      "components": [
+        {
+          "type": "TextComponent",
+          "text": "Score: ",
+          "fontName": "fonts/arcadeclassic.ttf",
+          "fontSize": 25
+        }
+      ]
+    }
+  ]
+}

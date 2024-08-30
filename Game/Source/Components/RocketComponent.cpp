@@ -1,6 +1,7 @@
-#include "PlayerComponent.h"
+
 #include "Engine.h"
 #include "RocketComponent.h"
+#include "Components/Box2DPhysicsComponent.h"
 
 FACTORY_REGISTER(RocketComponent)
 
@@ -27,6 +28,10 @@ void RocketComponent::OnCollisionEnter(Actor* actor)
 	if (!actor->destroyed && (actor->tag == "enemy"))
 	{
 		actor->destroyed = true;
+		owner->destroyed = true;
+	}
+	if (actor->tag == "Ground")
+	{
 		owner->destroyed = true;
 	}
 
